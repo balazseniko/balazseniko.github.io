@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Az én szokásaim – Adatvizualizáció</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    :root {
+      --bg: #030014;
+      --bg-card: rgba(9, 9, 26, 0.92);
+      --bg-card-soft: rgba(15, 23, 42, 0.95);
+      --accent: #a855f7;
+      --accent-soft: #22c55e;
+      --accent-alt: #38bdf8;
+      --text-main: #f9fafb;
+      --text-muted: #a1a1aa;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --radius-xl: 20px;
+      --shadow-soft: 0 24px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.16), transparent 52%),
+        #020617;
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98));
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--accent-alt);
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    p.intro {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .charts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .chart-card {
+      flex: 1 1 350px;
+      background: var(--bg-card-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.2rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 330px;
+      max-width: 380px;
+      transition: all 0.3s ease;
+    }
+
+    .chart-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .chart-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent-alt);
+    }
+
+    .chart-description {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+
+    .chart-container {
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 0.5rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent-alt);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .charts {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Az én szokásaim adatokban</h1>
+      <p class="intro">
+        Szeretek adatokat gyűjteni a mindennapjaimról — mennyi vizet iszom, mennyit költök,
+        vagy épp mennyit sétálok a kutyámmal. Ezeket az adatokat most interaktív grafikonokon is megnézheted.
+      </p>
+    </header>
+
+    <section class="charts">
+      <article class="chart-card">
+        <div>
+          <div class="chart-title">Napi vízfogyasztásom</div>
+          <p class="chart-description">
+            Egy héten keresztül vezettem, hogy hány pohár vizet iszom naponta.
+            Átlagosan 6–7 pohár a célom, és hétvégén általában jobban odafigyelek.
+          </p>
+        </div>
+        <div class="chart-container">
+          <div id="chart-water"></div>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div>
+          <div class="chart-title">Költéseim hónapokra bontva</div>
+          <p class="chart-description">
+            Itt azt mutatom meg, hogy az utóbbi hónapokban hogyan alakultak a kiadásaim.
+            A legtöbb pénz ételre és lakhatásra megy el, de a szórakozásra is mindig marad egy kicsi.
+          </p>
+        </div>
+        <div class="chart-container">
+          <div id="chart-expenses"></div>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div>
+          <div class="chart-title">Kutyasétáltatás – idő és hangulat</div>
+          <p class="chart-description">
+            Minden nap felírom, mennyi ideig sétáltatom a kutyámat, és mennyire volt lelkes aznap.
+            Általában hétvégén a leghosszabb séták és a legjobb kedv jellemző.
+          </p>
+        </div>
+        <div class="chart-container">
+          <div id="chart-dog"></div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      © 2025 Balázs Enikő · <a href="https://balazseniko.github.io" target="_blank">balazseniko.github.io</a>
+    </footer>
+  </div>
+
+  <script>
+    const waterSpec = {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      description: "Napi megivott pohár víz egy héten.",
+      data: {
+        values: [
+          { day: "Hétfő", glasses: 5 },
+          { day: "Kedd", glasses: 7 },
+          { day: "Szerda", glasses: 6 },
+          { day: "Csütörtök", glasses: 8 },
+          { day: "Péntek", glasses: 4 },
+          { day: "Szombat", glasses: 9 },
+          { day: "Vasárnap", glasses: 7 }
+        ]
+      },
+      mark: { type: "bar", cornerRadiusTopLeft: 4, cornerRadiusTopRight: 4 },
+      encoding: {
+        x: { field: "day", type: "ordinal", title: "Nap", axis: { labelAngle: 0 } },
+        y: { field: "glasses", type: "quantitative", title: "Pohár víz" },
+        color: { field: "day", type: "nominal", legend: null, scale: { scheme: "tealblues" } },
+        tooltip: [{ field: "day", title: "Nap" }, { field: "glasses", title: "Pohár" }]
+      }
+    };
+
+    const expensesSpec = {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      data: {
+        values: [
+          { month: "Jan", total: 900, food: 260, fun: 140, utilities: 100, housing: 400, dailyAvg: 30 },
+          { month: "Feb", total: 960, food: 280, fun: 160, utilities: 120, housing: 400, dailyAvg: 32 },
+          { month: "Már", total: 930, food: 270, fun: 150, utilities: 110, housing: 400, dailyAvg: 31 },
+          { month: "Ápr", total: 1050, food: 300, fun: 190, utilities: 140, housing: 420, dailyAvg: 35 },
+          { month: "Máj", total: 990, food: 290, fun: 160, utilities: 120, housing: 420, dailyAvg: 33 },
+          { month: "Jún", total: 1020, food: 300, fun: 170, utilities: 130, housing: 420, dailyAvg: 34 }
+        ]
+      },
+      mark: { type: "line", point: { filled: true, size: 60 } },
+      encoding: {
+        x: { field: "month", type: "ordinal", title: "Hónap" },
+        y: { field: "total", type: "quantitative", title: "Összes költés (€)" },
+        color: { value: "#a855f7" },
+        tooltip: [
+          { field: "month", title: "Hónap" },
+          { field: "total", title: "Összes (€)" },
+          { field: "dailyAvg", title: "Napi átlag (€)" },
+          { field: "food", title: "Étel (€)" },
+          { field: "fun", title: "Szórakozás (€)" },
+          { field: "utilities", title: "Rezsi (€)" },
+          { field: "housing", title: "Lakhatás (€)" }
+        ]
+      }
+    };
+
+    const dogSpec = {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+      data: {
+        values: [
+          { day: "Hétfő", hours: 0.8, mood: 6 },
+          { day: "Kedd", hours: 1.2, mood: 7 },
+          { day: "Szerda", hours: 0.6, mood: 5 },
+          { day: "Csütörtök", hours: 1.5, mood: 8 },
+          { day: "Péntek", hours: 1.0, mood: 7 },
+          { day: "Szombat", hours: 2.0, mood: 9 },
+          { day: "Vasárnap", hours: 1.7, mood: 8 }
+        ]
+      },
+      mark: { type: "point", filled: true },
+      encoding: {
+        x: { field: "day", type: "ordinal", title: "Nap", axis: { labelAngle: 0 } },
+        y: { field: "hours", type: "quantitative", title: "Séta időtartama (óra)" },
+        color: { field: "mood", type: "quantitative", scale: { scheme: "viridis" }, title: "Hangulat (1–10)" },
+        size: { field: "hours", type: "quantitative", title: "Séta hossza" },
+        tooltip: [
+          { field: "day", title: "Nap" },
+          { field: "hours", title: "Séta (óra)" },
+          { field: "mood", title: "Hangulat (1–10)" }
+        ]
+      }
+    };
+
+    vegaEmbed("#chart-water", waterSpec, { actions: false });
+    vegaEmbed("#chart-expenses", expensesSpec, { actions: false });
+    vegaEmbed("#chart-dog", dogSpec, { actions: false });
+  </script>
+</body>
+</html>
