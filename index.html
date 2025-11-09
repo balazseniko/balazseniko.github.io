@@ -2,7 +2,7 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8" />
-  <title>Adatvizualizációk – víz, pénz, kutyaséta</title>
+  <title>Adatvizualizáció-midennapjaim szokásai</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,8 +24,8 @@
       --text-main: #f9fafb;
       --text-muted: #a1a1aa;
       --border-subtle: rgba(148, 163, 184, 0.35);
-      --radius-xl: 22px;
-      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.8);
+      --radius-xl: 20px;
+      --shadow-soft: 0 24px 50px rgba(0, 0, 0, 0.8);
     }
 
     * {
@@ -35,352 +35,118 @@
     }
 
     body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: "Poppins", sans-serif;
       background:
         radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
         radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.16), transparent 52%),
-        radial-gradient(circle at 10% 80%, rgba(34, 197, 94, 0.08), transparent 50%),
         #020617;
       color: var(--text-main);
       min-height: 100vh;
-      padding: 2.5rem 1.5rem 3.5rem;
+      padding: 2rem;
       display: flex;
       justify-content: center;
     }
 
     .page {
       width: 100%;
-      max-width: 1120px;
+      max-width: 1200px;
     }
 
     header {
-      margin-bottom: 2.2rem;
-      padding: 1.85rem 2rem 1.9rem;
-      border-radius: 28px;
-      background: radial-gradient(circle at 0% 0%, rgba(248, 250, 252, 0.12), transparent 50%),
-                  radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.32), transparent 52%),
-                  linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.96));
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98));
+      border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(22px);
-    }
-
-    header::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      opacity: 0.6;
-      background:
-        radial-gradient(circle at 15% 0%, rgba(56, 189, 248, 0.25), transparent 55%),
-        radial-gradient(circle at 85% 90%, rgba(168, 85, 247, 0.3), transparent 60%);
-      pointer-events: none;
-      filter: blur(8px);
-      animation: headerGlow 9s ease-in-out infinite alternate;
-    }
-
-    @keyframes headerGlow {
-      0% {
-        transform: translate3d(-10px, 0, 0) scale(1);
-        opacity: 0.55;
-      }
-      100% {
-        transform: translate3d(10px, -6px, 0) scale(1.03);
-        opacity: 0.9;
-      }
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
+      text-align: center;
     }
 
     h1 {
-      font-size: 2.25rem;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.6rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
+      font-size: 2.2rem;
+      color: var(--accent-alt);
+      margin-bottom: 0.7rem;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    h1 span.logo-dot {
-      width: 0.8rem;
-      height: 0.8rem;
-      border-radius: 999px;
-      background: conic-gradient(from 140deg, #a855f7, #38bdf8, #22c55e, #a855f7);
-      box-shadow:
-        0 0 12px rgba(168, 85, 247, 0.9),
-        0 0 18px rgba(56, 189, 248, 0.8);
-      position: relative;
-    }
-
-    h1 span.logo-dot::after {
-      content: "";
-      position: absolute;
-      inset: -6px;
-      border-radius: inherit;
-      border: 1px solid rgba(248, 250, 252, 0.35);
-      opacity: 0.7;
-    }
-
-    .tagline {
+    p.intro {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      max-width: 560px;
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
       line-height: 1.7;
     }
 
-    .info-badges {
-      margin-top: 1.2rem;
+    .charts {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.55rem;
-    }
-
-    .badge {
-      font-size: 0.78rem;
-      padding: 0.45rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.06), transparent 55%);
-      background-color: rgba(15, 23, 42, 0.78);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      color: var(--text-muted);
-      backdrop-filter: blur(10px);
-      transform: translateY(0);
-      transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .badge:hover {
-      border-color: rgba(168, 85, 247, 0.9);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.7);
-    }
-
-    .badge-dot {
-      width: 0.46rem;
-      height: 0.46rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #38bdf8, #a855f7);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.15fr);
-      gap: 1.6rem;
-    }
-
-    .sidebar {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.94));
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-subtle);
-      padding: 1.35rem 1.5rem;
-      box-shadow: var(--shadow-soft);
-      align-self: flex-start;
-      backdrop-filter: blur(16px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .sidebar::before {
-      content: "";
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%);
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .sidebar h2 {
-      font-size: 1.05rem;
-      margin-bottom: 0.65rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .sidebar p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 0.8rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .sidebar ol {
-      padding-left: 1.2rem;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-      display: grid;
-      gap: 0.3rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .sidebar li::marker {
-      color: var(--accent-alt);
-    }
-
-    .charts {
-      display: grid;
-      gap: 1.25rem;
+      gap: 1.5rem;
+      justify-content: center;
     }
 
     .chart-card {
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.08), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.08), transparent 55%),
-                  var(--bg-card-soft);
-      border-radius: var(--radius-xl);
+      flex: 1 1 350px;
+      background: var(--bg-card-soft);
       border: 1px solid var(--border-subtle);
-      padding: 1.15rem 1.3rem 1.4rem;
+      border-radius: var(--radius-xl);
+      padding: 1.2rem 1.5rem;
       box-shadow: var(--shadow-soft);
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(14px);
-      transform: translateY(0) translateZ(0);
-      transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease,
-        background 0.22s ease;
-    }
-
-    .chart-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 0% 0%, rgba(248, 250, 252, 0.08), transparent 60%);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.22s ease;
+      justify-content: space-between;
+      min-width: 330px;
+      max-width: 380px;
+      transition: all 0.3s ease;
     }
 
     .chart-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 26px 55px rgba(15, 23, 42, 0.9);
-      border-color: rgba(168, 85, 247, 0.7);
-    }
-
-    .chart-card:hover::before {
-      opacity: 1;
-    }
-
-    .chart-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      align-items: center;
-      flex-wrap: wrap;
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
     }
 
     .chart-title {
-      font-size: 1.02rem;
       font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .chart-meta {
-      font-size: 0.78rem;
-      color: var(--accent-soft);
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent-alt);
     }
 
     .chart-description {
-      font-size: 0.86rem;
       color: var(--text-muted);
-      line-height: 1.55;
-      margin-top: 0.2rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
     }
 
     .chart-container {
-      margin-top: 0.5rem;
-      border-radius: 1.1rem;
-      background: radial-gradient(circle at top, rgba(15, 118, 110, 0.09), transparent 60%);
-      border: 1px solid rgba(31, 41, 55, 0.85);
-      padding: 0.65rem;
-      overflow: hidden;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.25rem;
-    }
-
-    .chip {
-      font-size: 0.74rem;
-      padding: 0.16rem 0.55rem;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.7);
-      color: var(--text-muted);
-      background-color: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 0.5rem;
+      background: rgba(15, 23, 42, 0.9);
     }
 
     footer {
-      margin-top: 2rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
       text-align: center;
-      opacity: 0.9;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
     footer a {
       color: var(--accent-alt);
       text-decoration: none;
-      font-weight: 500;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
 
-    code {
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
-        Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.8rem;
-      background: rgba(15, 23, 42, 0.8);
-      padding: 0.12rem 0.35rem;
-      border-radius: 4px;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-    }
-
     @media (max-width: 900px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      header {
-        padding: 1.6rem 1.4rem 1.7rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 1.6rem 1rem 2.4rem;
-      }
-
-      h1 {
-        font-size: 1.7rem;
-      }
-
-      .chart-card {
-        padding: 1rem 1.05rem 1.2rem;
+      .charts {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -388,126 +154,53 @@
 <body>
   <div class="page">
     <header>
-      <div class="header-content">
-        <h1>
-          <span class="logo-dot"></span>
-          Napi szokások vizualizálva
-        </h1>
-        <p class="tagline">
-          Random, de valószerű adatok arról, mennyi vizet iszol, mennyit költesz egy hónapban
-          és mennyit sétáltatod a kutyádat. Mindez interaktív Vega-Lite grafikonokkal.
-        </p>
-        <div class="info-badges">
-          <span class="badge">
-            <span class="badge-dot"></span>
-            Vega-Lite · interaktív
-          </span>
-          <span class="badge">
-            💧
-            Vízfogyasztás napokra bontva
-          </span>
-          <span class="badge">
-            💸
-            Havi költések, napi átlagokkal
-          </span>
-          <span class="badge">
-            🐕
-            Kutyaséta óraszámban
-          </span>
-        </div>
-      </div>
+      <h1>Mindennapjaim szokásai vizualizálva</h1>
+      <p class="intro">
+        Ezek az adatok a mindennapjaim részei , viszont mindeddig nem igazán figyeltem fel rájuk.
     </header>
 
-    <main>
-      <aside class="sidebar">
-        <h2>Miről szólnak az adatok?</h2>
-        <p>
-          A számok kitalált, de valószerű értékek, amiket nyugodtan kicserélhetsz a saját adataidra.
-          Három vizualizáció szerepel:
-        </p>
-        <ol>
-          <li>Napi megivott pohár víz (bar chart)</li>
-          <li>Havi költéseid, bontás és napi átlag (line chart)</li>
-          <li>Kutyasétáltatás időben mérve (scatter plot)</li>
-        </ol>
-        <p>
-          Nyisd meg ezt az oldalt Live Serverrel, nézd meg az interaktív tooltip-eket,
-          majd töltsd fel GitHub Pages-re <code>felhasznalonev.github.io</code> néven.
-        </p>
-        <p style="font-size: 0.82rem; font-style: italic; color: var(--text-muted);">
-          Tipp: ha még extrább dizájnt szeretnél, kérd: „Adj neon stílusú dark mode színsémát.”
-        </p>
-      </aside>
+    <section class="charts">
+      <article class="chart-card">
+        <div>
+          <div class="chart-title">Napi vízfogyasztásom</div>
+          <p class="chart-description">
+            Probálkozom minél jobban oda figzelni, viszont nem mindig jön össze.
+            Átlagosan 6–7 pohár a célom, és hétvégén általában jobban odafigyelek.
+          </p>
+        </div>
+        <div class="chart-container">
+          <div id="chart-water"></div>
+        </div>
+      </article>
 
-      <section class="charts">
-        <article class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Napi megivott pohár víz</div>
-              <p class="chart-description">
-                Egy hét kitalált adatai arról, hány pohár vizet ittál az egyes napokon.
-                Az oszlopokra húzva az egeret látod a pontos értékeket.
-              </p>
-            </div>
-            <span class="chart-meta">Bar chart</span>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Egészséges szokások</span>
-            <span class="chip">7 nap</span>
-          </div>
-          <div class="chart-container">
-            <div id="chart-water"></div>
-          </div>
-        </article>
+      <article class="chart-card">
+        <div>
+          <div class="chart-title">Költéseim hónapokra bontva</div>
+          <p class="chart-description">
+            Itt azt mutatom meg, hogy az utóbbi hónapokban hogyan alakultak a kiadásaim.
+            A legtöbb pénz ételre és lakhatásra megy el, de a szórakozásra is mindig marad egy kicsi.
+          </p>
+        </div>
+        <div class="chart-container">
+          <div id="chart-expenses"></div>
+        </div>
+      </article>
 
-        <article class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Havi költések és napi átlag</div>
-              <p class="chart-description">
-                Hat hónap összesített havi költése, lebontva ételre, szórakozásra, rezsire és lakhatásra.
-                A tooltip-ben a havi összeg mellett megjelenik, hogy ez nagyjából mennyi pénz naponta.
-              </p>
-            </div>
-            <span class="chart-meta">Line chart</span>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Étel, szórakozás, rezsi, lakhatás</span>
-            <span class="chip">Napi átlag számítva</span>
-          </div>
-          <div class="chart-container">
-            <div id="chart-expenses"></div>
-          </div>
-        </article>
-
-        <article class="chart-card">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Mennyi ideig sétáltatod a kutyát?</div>
-              <p class="chart-description">
-                Kitalált adatok arról, hány órát sétáltatod a kutyádat egy héten,
-                és mennyire volt boldog a kutya aznap (1–10 skálán).
-              </p>
-            </div>
-            <span class="chart-meta">Scatter plot</span>
-          </div>
-          <div class="chip-row">
-            <span class="chip">Időráfordítás</span>
-            <span class="chip">Kutyahangulat</span>
-          </div>
-          <div class="chart-container">
-            <div id="chart-dog"></div>
-          </div>
-        </article>
-      </section>
-    </main>
+      <article class="chart-card">
+        <div>
+          <div class="chart-title">Kutyasétáltatás – idő és hangulat</div>
+          <p class="chart-description">
+            Általában hétvégén a leghosszabb séták és a legjobb kedv jellemző.
+          </p>
+        </div>
+        <div class="chart-container">
+          <div id="chart-dog"></div>
+        </div>
+      </article>
+    </section>
 
     <footer>
-      Ha kész vagy, töltsd fel az <code>index.html</code>-t a 
-      <code>felhasznalonev.github.io</code> repóba, majd nézd meg itt:
-      <a href="https://felhasznalonev.github.io" target="_blank" rel="noreferrer">
-        https://felhasznalonev.github.io
-      </a>
+      © 2025 Balázs Enikő · <a href="https://balazseniko.github.io" target="_blank">balazseniko.github.io</a>
     </footer>
   </div>
 
@@ -526,42 +219,17 @@
           { day: "Vasárnap", glasses: 7 }
         ]
       },
-      mark: {
-        type: "bar",
-        cornerRadiusTopLeft: 4,
-        cornerRadiusTopRight: 4
-      },
+      mark: { type: "bar", cornerRadiusTopLeft: 4, cornerRadiusTopRight: 4 },
       encoding: {
-        x: {
-          field: "day",
-          type: "ordinal",
-          title: "Nap",
-          sort: ["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"],
-          axis: { labelAngle: 0 }
-        },
-        y: {
-          field: "glasses",
-          type: "quantitative",
-          title: "Megivott pohár víz"
-        },
-        color: {
-          field: "day",
-          type: "nominal",
-          legend: null,
-          scale: {
-            scheme: "tealblues"
-          }
-        },
-        tooltip: [
-          { field: "day", title: "Nap" },
-          { field: "glasses", title: "Pohár" }
-        ]
+        x: { field: "day", type: "ordinal", title: "Nap", axis: { labelAngle: 0 } },
+        y: { field: "glasses", type: "quantitative", title: "Pohár víz" },
+        color: { field: "day", type: "nominal", legend: null, scale: { scheme: "tealblues" } },
+        tooltip: [{ field: "day", title: "Nap" }, { field: "glasses", title: "Pohár" }]
       }
     };
 
     const expensesSpec = {
       $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-      description: "Havi költések, napi átlaggal és kategóriákkal.",
       data: {
         values: [
           { month: "Jan", total: 900, food: 260, fun: 140, utilities: 100, housing: 400, dailyAvg: 30 },
@@ -572,43 +240,25 @@
           { month: "Jún", total: 1020, food: 300, fun: 170, utilities: 130, housing: 420, dailyAvg: 34 }
         ]
       },
-      mark: {
-        type: "line",
-        point: {
-          filled: true,
-          size: 64
-        }
-      },
+      mark: { type: "line", point: { filled: true, size: 60 } },
       encoding: {
-        x: {
-          field: "month",
-          type: "ordinal",
-          title: "Hónap",
-          sort: ["Jan","Feb","Már","Ápr","Máj","Jún"]
-        },
-        y: {
-          field: "total",
-          type: "quantitative",
-          title: "Havi összes költés (EUR)"
-        },
-        color: {
-          value: "#a855f7"
-        },
+        x: { field: "month", type: "ordinal", title: "Hónap" },
+        y: { field: "total", type: "quantitative", title: "Összes költés (€)" },
+        color: { value: "#a855f7" },
         tooltip: [
           { field: "month", title: "Hónap" },
-          { field: "total", title: "Havi összes (EUR)" },
-          { field: "dailyAvg", title: "Napi átlag (EUR)" },
-          { field: "food", title: "Étel (EUR)" },
-          { field: "fun", title: "Szórakozás (EUR)" },
-          { field: "utilities", title: "Rezsi (EUR)" },
-          { field: "housing", title: "Lakhatás (EUR)" }
+          { field: "total", title: "Összes (€)" },
+          { field: "dailyAvg", title: "Napi átlag (€)" },
+          { field: "food", title: "Étel (€)" },
+          { field: "fun", title: "Szórakozás (€)" },
+          { field: "utilities", title: "Rezsi (€)" },
+          { field: "housing", title: "Lakhatás (€)" }
         ]
       }
     };
 
     const dogSpec = {
       $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-      description: "Kutyasétáltatás időben mérve és a kutya hangulata.",
       data: {
         values: [
           { day: "Hétfő", hours: 0.8, mood: 6 },
@@ -620,34 +270,12 @@
           { day: "Vasárnap", hours: 1.7, mood: 8 }
         ]
       },
-      mark: {
-        type: "point",
-        filled: true
-      },
+      mark: { type: "point", filled: true },
       encoding: {
-        x: {
-          field: "day",
-          type: "ordinal",
-          title: "Nap",
-          sort: ["Hétfő","Kedd","Szerda","Csütörtök","Péntek","Szombat","Vasárnap"],
-          axis: { labelAngle: 0 }
-        },
-        y: {
-          field: "hours",
-          type: "quantitative",
-          title: "Sétáltatás időtartama (óra)"
-        },
-        color: {
-          field: "mood",
-          type: "quantitative",
-          scale: { scheme: "viridis" },
-          title: "Kutya hangulata (1–10)"
-        },
-        size: {
-          field: "hours",
-          type: "quantitative",
-          title: "Séta hossza"
-        },
+        x: { field: "day", type: "ordinal", title: "Nap", axis: { labelAngle: 0 } },
+        y: { field: "hours", type: "quantitative", title: "Séta időtartama (óra)" },
+        color: { field: "mood", type: "quantitative", scale: { scheme: "viridis" }, title: "Hangulat (1–10)" },
+        size: { field: "hours", type: "quantitative", title: "Séta hossza" },
         tooltip: [
           { field: "day", title: "Nap" },
           { field: "hours", title: "Séta (óra)" },
